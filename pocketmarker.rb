@@ -1,10 +1,11 @@
 require 'sinatra/base'
+require 'haml'
 require 'pry'
 
-class App < Sinatra::Base
+class Pocketmarker < Sinatra::Base
 
-  before do 
-    
+  before do
+
   end
 
   get '/' do

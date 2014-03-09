@@ -1,4 +1,4 @@
 require 'sinatra'
 
-require './pocketmarker.rb'
-run Pocketmarker
+require './pocketmarker_app.rb'
+run PocketmarkerApp

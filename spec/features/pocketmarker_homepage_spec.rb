@@ -1,10 +1,10 @@
 require 'test_helper'
 
-describe "PocketMark homepage", :type => :feature do
+describe "Pocketmarker homepage", :type => :feature do
 
   it "has a title" do
     visit '/'
-    expect(page).to have_content "PocketMark"
+    expect(page).to have_content "Pocketmarker"
   end
 
   it "has a link to log in via Pocket" do

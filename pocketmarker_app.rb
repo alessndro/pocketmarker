@@ -7,7 +7,7 @@ require 'omniauth-pocket'
 
 POCKET_CONSUMER_KEY = YAML.load_file("config/pocket.yaml")["consumer_key"]
 
-class Pocketmarker < Sinatra::Base
+class PocketmarkerApp < Sinatra::Base
   configure do
     enable :sessions
 

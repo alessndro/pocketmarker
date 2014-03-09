@@ -1,5 +1,8 @@
+%p
+  Welcome
+  = @username if @username
 %h1 Homepage
 %p
   In order to add items to your Pocket account, you will first need to log in via Pocket and authenticate this app.
-%a.btn{href: "login"}
+%a.btn{href: "auth/pocket"}
   Log in via Pocket

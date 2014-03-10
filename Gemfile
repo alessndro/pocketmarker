@@ -6,6 +6,7 @@ gem 'haml'
 
 gem 'omniauth'
 gem 'omniauth-pocket'
+gem 'typhoeus', '~>0.6.7'
 
 group :development do
   gem 'shotgun'
@@ -16,5 +17,5 @@ group :test do
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
-  gem 'vcr'
+  gem 'webmock'
 end

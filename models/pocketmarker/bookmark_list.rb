@@ -36,13 +36,13 @@ module Pocketmarker
         # If the anchor doesn't have the ADD_DATE attribute, it isn't an
         # actual bookmark, so skip it
         next if !link_node.attributes.has_key?("ADD_DATE")
-        
+
         bookmark_title = link_node.children.text || "No Name"
         bookmark_url = link_node.attributes["HREF"].value
 
         bookmarks << Pocketmarker::Bookmark.new(bookmark_title, bookmark_url)
       end
-      
+
       bookmark_list = self.new
       bookmark_list.add(bookmarks)
       return bookmark_list

@@ -8,6 +8,7 @@ Dir[Dir.pwd + "/models/**/*.rb"].each { |f| require f }
 require 'rack/test'
 require 'rspec'
 require 'capybara/rspec'
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
@@ -15,4 +16,6 @@ RSpec.configure do |config|
   def app() PocketmarkerApp end
 
   Capybara.app = app
+
+  WebMock.disable_net_connect!(allow_localhost: true)
 end

@@ -8,6 +8,8 @@ gem 'omniauth'
 gem 'omniauth-pocket'
 gem 'typhoeus', '~>0.6.7'
 
+gem 'sinatra-flash'
+
 group :development do
   gem 'shotgun'
   gem 'pry'

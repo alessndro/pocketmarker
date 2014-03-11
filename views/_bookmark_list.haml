@@ -1,0 +1,5 @@
+%p
+  %ul.bookmark_list
+    - @bookmark_list.bookmarks.each do |bookmark|
+      %li
+        = bookmark.title

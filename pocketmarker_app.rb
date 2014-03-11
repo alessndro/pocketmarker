@@ -4,29 +4,72 @@ require 'pry'
 
 require 'omniauth'
 require 'omniauth-pocket'
+require 'sinatra/flash'
+
+# recursively require all model files
+Dir[Dir.pwd + "/models/**/*.rb"].each { |f| require f }
 
 POCKET_CONSUMER_KEY = YAML.load_file("config/pocket.yaml")["consumer_key"]
 
 class PocketmarkerApp < Sinatra::Base
   configure do
     enable :sessions
+    register Sinatra::Flash
 
     use OmniAuth::Builder do
       provider :pocket, POCKET_CONSUMER_KEY
     end
   end
 
-  before do
+  helpers do
+    def current_user
+      !session[:uid].nil?
+    end
+  end
+
+  before '/upload_bookmarks' do
+    #puts session.inspect
     @username = session[:username] if !session[:username].nil?
+    
+    unless current_user
+      flash[:error] = "You need to log in Via Pocket to access this section"
+      #redirect to('/') 
+    end
   end
 
   get '/' do
     haml :home
   end
 
+  get '/upload_bookmarks' do
+    haml :upload_bookmarks
+  end
+
+  post '/upload' do
+    bookmark_file = File.read(params[:bookmark_file][:tempfile])
+    @bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
+    puts @bookmark_list
+
+    haml :your_bookmarks
+  end
+
+  post "/add_to_pocket" do
+    bookmark_list = Pocketmarker::BookmarkList.new
+
+    params.each do |bookmark_title, bookmark_url|
+        bookmark_list.add(Pocketmarker::Bookmark.new(bookmark_title, bookmark_url))
+    end
+
+    PocketAPIClient.new(POCKET_CONSUMER_KEY, session[:access_token]).add_items(bookmark_list.bookmarks)
+  end
+
   get '/auth/pocket/callback' do
+    session[:uid] = request.env["omniauth.auth"].uid
     session[:username] = request.env["omniauth.auth"].info.name
-    haml :welcome
+    session[:access_token] = request.env["omniauth.auth"].credentials.token
+    
+    flash[:info] = "You have successfully logged in"
+    redirect to('/upload_bookmarks')
   end
 
   get '/auth/failure' do

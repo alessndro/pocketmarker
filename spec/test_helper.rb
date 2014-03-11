@@ -18,4 +18,15 @@ RSpec.configure do |config|
   Capybara.app = app
 
   WebMock.disable_net_connect!(allow_localhost: true)
+
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:pocket] = OmniAuth::AuthHash.new(
+    {
+      "provider" => "pocket",
+      "uid" => "sandro",
+      "info" => { "name" => "alessandro", "nickname" => "sandro" },
+      "credentials" => { "token" => "accesstoken", "expires" => false },
+      "extra" => { "raw_info" => { "username" => "sandro" } } }
+  )
+
 end

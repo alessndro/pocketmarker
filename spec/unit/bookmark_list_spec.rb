@@ -3,25 +3,45 @@ require 'test_helper'
 describe "BookmarkList" do
 
   describe "importing bookmarks from a file" do
-    it "adds bookmarks from a Firefox bookmark export" do
-      bookmark_file = File.read("spec/support/firefox_bookmarks_7.html")
-      bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
+    context "when the file is a valid bookmark file" do
+      it "adds bookmarks from a Firefox bookmark export" do
+        bookmark_file = File.read("spec/support/firefox_bookmarks_7.html")
+        bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
 
-      expect(bookmark_list.bookmarks.length).to eq(7)
+        expect(bookmark_list.bookmarks.length).to eq(7)
+      end
+
+      it "adds bookmarks from an Opera bookmark export" do
+        bookmark_file = File.read("spec/support/opera_bookmarks_5.html")
+        bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
+
+        expect(bookmark_list.bookmarks.length).to eq(5)
+      end
+
+      it "adds bookmarks from a Chrome bookmark export" do
+        bookmark_file = File.read("spec/support/chrome_bookmarks_2.html")
+        bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
+        
+        expect(bookmark_list.bookmarks.length).to eq(2)
+      end
     end
 
-    it "adds bookmarks from an Opera bookmark export" do
-      bookmark_file = File.read("spec/support/opera_bookmarks_5.html")
-      bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
+    context "when a BookmarkList is a valid bookmark file but contains no bookmarks" do
+      it "is empty" do
+        bookmark_file = File.read("spec/support/empty_bookmarks.html")
+        bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
 
-      expect(bookmark_list.bookmarks.length).to eq(5)
+        expect(bookmark_list.empty?).to eq(true)
+      end
     end
 
-    it "adds bookmarks from a Chrome bookmark export" do
-      bookmark_file = File.read("spec/support/chrome_bookmarks_2.html")
-      bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
-      
-      expect(bookmark_list.bookmarks.length).to eq(2)
+    context "when a BookmarkList is created from a file that is not a valid bookmark file" do
+      it "is returns empty" do
+        bookmark_file = File.read("spec/support/invalid_bookmark_file.html")
+        bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
+
+        expect(bookmark_list.empty?).to eq(true)
+      end
     end
   end
 
@@ -51,6 +71,11 @@ describe "BookmarkList" do
 
     it "pretty prints its contents" do
       expect(bookmark_list.to_s).to eq("Total Bookmarks: 2\n\nName: News\nURL: http://news.com\n\nName: ESPN: The Worldwide Leader In Sports\nURL: http://espn.go.com/")
+    end
+
+    it "knows when it is empty" do
+      empty_bookmark_list = Pocketmarker::BookmarkList.new
+      expect(empty_bookmark_list.empty?).to eq(true)
     end
   end
 end

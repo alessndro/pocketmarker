@@ -48,19 +48,31 @@ class PocketmarkerApp < Sinatra::Base
   post '/upload' do
     bookmark_file = File.read(params[:bookmark_file][:tempfile])
     @bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
-    puts @bookmark_list
 
-    haml :your_bookmarks
+    if @bookmark_list.empty?
+      flash[:error] = "The file was either corrupted or did not contain any bookmarks"
+      redirect to('/upload_bookmarks')
+    else
+      haml :your_bookmarks
+    end
   end
 
   post "/add_to_pocket" do
-    bookmark_list = Pocketmarker::BookmarkList.new
+    @bookmark_list = Pocketmarker::BookmarkList.new
 
     params.each do |bookmark_title, bookmark_url|
-        bookmark_list.add(Pocketmarker::Bookmark.new(bookmark_title, bookmark_url))
+        @bookmark_list.add(Pocketmarker::Bookmark.new(bookmark_title, bookmark_url))
     end
 
-    PocketAPIClient.new(POCKET_CONSUMER_KEY, session[:access_token]).add_items(bookmark_list.bookmarks)
+    pocket_client = PocketAPIClient.new(POCKET_CONSUMER_KEY, session[:access_token])
+    
+    if pocket_client.add_items(@bookmark_list.bookmarks)
+      puts "Success"
+      haml :add_to_pocket_success
+    else
+      puts "Failure"
+      haml :add_to_pocket_failure
+    end
   end
 
   get '/auth/pocket/callback' do

@@ -1,7 +1,10 @@
 %form{ action:"add_to_pocket", method: "post", id: "bookmark_edit_form" }
   - @bookmark_list.bookmarks.each_with_index do |bookmark, n|
-    %label{ for: "bookmark-#{n}" }
-      %input{ type: "checkbox", name: html_escape(bookmark.title), value: html_escape(bookmark.url), id: "bookmark-#{n}", checked: "checked" }
-      = html_escape(bookmark.title)
-      = html_escape(bookmark.url)
+    .bookmark-item.clearfix
+      %label{ for: "bookmark-#{n}"}
+        %input{ type: "checkbox", name: html_escape(bookmark.title), value: html_escape(bookmark.url), id: "bookmark-#{n}", checked: "checked", class: "bookmark-checkbox" }
+        %span.bookmark-title
+          = html_escape(bookmark.title)
+      %span.bookmark-url
+        = html_escape(bookmark.url)
   %input{ type: "submit", value: "Add to Pocket"}

@@ -5,7 +5,8 @@
 html {
     color: #222;
     font-size: 1em;
-    line-height: 1.4;
+    line-height: 1.5;
+    font-family: "Varela", sans-serif;
 }
 
 /*
@@ -89,24 +90,43 @@ textarea {
   color: #444444;
 }
 
-label {
-  display:block;
-  margin: 0.5em;
+.bookmark-item {
+  margin: 1em 0;
 }
 
+label {
+  display:block;
+}
 
+.bookmark-checkbox {
 
+}
 
+.bookmark-title {
 
+}
 
+.bookmark-url {
+  float: left;
+  width: 100%;
+  display: block;
+  font-size: 0.9em;
+  color: #bbbbbb;
+}
 
+.error {
+  padding: 1em;
+  background-color: #BB4040;
+  color: white;
+  text-align: center;
+}
 
-
-
-
-
-
-
+.info {
+  padding: 1em;
+  background-color: green;
+  color: white;
+  text-align: center;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */

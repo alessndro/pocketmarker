@@ -37,7 +37,7 @@ describe "Uploading bookmarks", :type => :feature do
         click_button("Upload Bookmarks")
       end
 
-      describe "uploading a bookmark file" do
+      describe "uploading a bookmark file"  do
         it "displays the titles of bookmarks that were in the uploaded file" do
           expect(page).to have_content("ESPN: The Worldwide Leader In Sports")
           expect(page).to have_content("News")

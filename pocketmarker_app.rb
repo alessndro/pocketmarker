@@ -1,10 +1,8 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require 'haml'
-require 'pry'
-
 require 'omniauth'
 require 'omniauth-pocket'
-require 'sinatra/flash'
 
 # recursively require all model files
 Dir[Dir.pwd + "/models/**/*.rb"].each { |f| require f }
@@ -28,7 +26,6 @@ class PocketmarkerApp < Sinatra::Base
   end
 
   before '/upload_bookmarks' do
-    #puts session.inspect
     @username = session[:username] if !session[:username].nil?
     
     unless current_user
@@ -41,7 +38,7 @@ class PocketmarkerApp < Sinatra::Base
     haml :home
   end
 
-  get '/upload_bookmarks' do
+  get '/upload' do
     haml :upload_bookmarks
   end
 
@@ -51,7 +48,7 @@ class PocketmarkerApp < Sinatra::Base
 
     if @bookmark_list.empty?
       flash[:error] = "The file was either corrupted or did not contain any bookmarks"
-      redirect to('/upload_bookmarks')
+      redirect to('/upload')
     else
       haml :your_bookmarks
     end
@@ -81,11 +78,11 @@ class PocketmarkerApp < Sinatra::Base
     session[:access_token] = request.env["omniauth.auth"].credentials.token
     
     flash[:info] = "You have successfully logged in"
-    redirect to('/upload_bookmarks')
+    redirect to('/upload')
   end
 
   get '/auth/failure' do
-  # omniauth redirects to /auth/failure when it encounters a problem
-  # so you can implement this as you please
+    flash[:error] = "Something went wrong while authenticating"
+    redirect to('/') 
   end
 end

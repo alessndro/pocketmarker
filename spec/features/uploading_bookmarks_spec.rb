@@ -17,7 +17,7 @@ describe "Uploading bookmarks", :type => :feature do
 
     describe "the upload form" do
       it "is displayed on the page" do
-        expect(page).to have_css("form.upload_form")
+        expect(page).to have_css("form.upload-form")
       end
 
       it "allows files to be uploaded" do

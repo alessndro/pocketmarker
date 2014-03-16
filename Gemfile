@@ -8,6 +8,7 @@ gem 'haml'
 gem 'omniauth'
 gem 'omniauth-pocket'
 gem 'typhoeus', '~>0.6.7'
+gem 'nokogiri'
 
 gem 'sinatra-flash'
 

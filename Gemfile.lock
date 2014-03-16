@@ -91,6 +91,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   haml
+  nokogiri
   omniauth
   omniauth-pocket
   pry

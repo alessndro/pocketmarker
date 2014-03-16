@@ -4,12 +4,12 @@
     %meta{charset: "utf-8"}/
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
     %title PocketMarker
-    %meta{content: "", name: "description"}
+    %meta{content: "Upload your bookmarks to your Pocket queue", name: "description"}
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
     / Place favicon.ico and apple-touch-icon(s) in the root directory
     %link{href: "/css/normalize.css", rel: "stylesheet"}
     %link{href: "/css/main.css", rel: "stylesheet"}
-    %link{href: "http://fonts.googleapis.com/css?family=Varela", rel: "stylesheet", type: "text/css"}
+    %link{href: "http://fonts.googleapis.com/css?family=Varela+Round", rel: "stylesheet", type: "text/css"}
   %body
     /[if lt IE 8]
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -17,10 +17,16 @@
     .container
       .flash
         = styled_flash
-
-      %h1 PocketMarker
+      %header
+        %img{ src:"img/logo@2x.png", class: "logo"}
       .main
         = yield
+      %footer
+        %p.column.left-column
+          This site is not affiliated with Pocket in any way, except for the fact it uses their (excellent) API. 
+        %p.column.right-column
+          %a{ href: "https://github.com/alessndro/pocketmarker"}
+            View on Github
     %script{src: "//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"}
     :javascript
       window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')

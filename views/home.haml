@@ -1,8 +1,25 @@
-%p
-  Welcome
-  = @username if @username
-%h1 Homepage
-%p
-  In order to add items to your Pocket account, you will first need to log in via Pocket and authenticate this app.
-%a.btn{href: "auth/pocket"}
+%h2.blocked-heading
+  Upload bookmarks and send them to your Pocket queue
+.instructions.clearfix
+  .instruction
+    %p.step
+      Step 1
+    %p
+      Log in via Pocket
+  .instruction
+    %p.step
+      Step 2
+    %p
+      Upload a bookmark file exported from your web browser
+  .instruction
+    %p.step
+      Step 3
+    %p
+      Select the bookmarks you’d like to send to Pocket
+  .instruction
+    %p.step
+      Step 4
+    %p
+      Your bookmarks are added to your Pocket queue!
+%a{href: "auth/pocket", class: "button login-btn"}
   Log in via Pocket

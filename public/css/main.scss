@@ -1,231 +1,301 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+
+$dark-green: #94CDB7;
+$light-green: #C6E5D9;
+$dark-red: #D9787B;
+$light-red: #F07175;
+$grey: #545454;
+
 *, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+ }
 
 html {
-  color: #545454;
+  color: $grey;
   font-size: 1.125em;
   line-height: 1.5;
-  font-family: "Varela Round", sans-serif; }
+  font-family: "Varela Round", sans-serif;
+}
 
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
  * Customize the background color to match your design.
  */
+
 ::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none; }
+    background: #b3d4fc;
+    text-shadow: none;
+}
 
 ::selection {
-  background: #b3d4fc;
-  text-shadow: none; }
+    background: #b3d4fc;
+    text-shadow: none;
+}
 
 /*
  * A better looking default horizontal rule
  */
+
 hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0; }
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
 
 /*
  * Remove the gap between images, videos, audio and canvas and the bottom of
  * their containers: h5bp.com/i/440
  */
+
 audio,
 canvas,
 img,
 svg,
 video {
-  vertical-align: middle; }
+    vertical-align: middle;
+}
 
 img {
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 /*
  * Remove default fieldset styles.
  */
+
 fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0; }
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
 
 /*
  * Allow only vertical resizing of textareas.
  */
+
 textarea {
-  resize: vertical; }
+    resize: vertical;
+}
+
 
 a, a:visited {
   text-decoration: none;
-  color: #f07175; }
+  color: $light-red;
+}
 
 a:hover {
-  color: #d9787b; }
+  color: $dark-red;
+}
 
 /* ==========================================================================
    Browse Happy prompt
    ========================================================================== */
+
 .browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0; }
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
 header {
-  text-align: center; }
+  text-align: center;
+}
 
 .logo {
   width: 7.055555556em;
-  margin: 1.125em 0 3em 0; }
+  margin: 1.125em 0 3em 0;
+}
 
 .blocked-heading {
   padding: 1.125em 5%;
-  background-color: #94cdb7;
+  background-color: $dark-green;
   color: white;
-  text-align: center; }
+  text-align: center;
+
   @media (min-width: 500px) {
-    .blocked-heading {
-      padding: 1.125em 20%; } }
+    padding: 1.125em 20%;
+  }
+}
 
 .button {
   display: block;
   width: 70%;
-  background-color: #d9787b;
+  background-color: $dark-red;
   color: white;
   padding: 1.125em 0;
   margin: 3em auto;
-  text-align: center; }
-  .button:hover {
-    opacity: 0.8; }
-  .button:link, .button:visited {
-    color: white; }
+  text-align: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:link, &:visited {
+    color: white;
+  }
+  
   @media (min-width: 600px) {
-    .button {
-      width: 50%; } }
+    width: 50%;
+  }
+
   @media (min-width: 900px) {
-    .button {
-      width: 36%; } }
+    width: 36%;
+  }
+}
 
 .instructions {
-  margin: 4.5em 0 6em; }
+  margin: 4.5em 0 6em;
+}
 
 .instruction {
   width: 100%;
   padding: 0 15%;
-  margin: 0 0 3em 0; }
+  margin: 0 0 3em 0;
+
   @media (min-width: 600px) {
-    .instruction {
-      float: left;
-      width: 50%;
-      padding: 0 6%;
-      margin: 0 0 3em 0; } }
+    float: left;
+    width: 50%;
+    padding: 0 6%;
+    margin: 0 0 3em 0;
+  }
+
   @media (min-width: 900px) {
-    .instruction {
-      width: 25%;
-      margin: 0;
-      padding: 0 2%; } }
+    width: 25%;
+    margin: 0;
+    padding: 0 2%;
+  }
+}
 
 .step {
   text-align: center;
   margin: 0 0 1.125em 0;
-  color: #d9787b; }
-
+  color: $dark-red;
+}
 .bookmark-item {
-  margin: 1em 0; }
+  margin: 1em 0;
+}
 
 label {
-  display: block; }
+  display:block;
+}
+
+.bookmark-checkbox {
+
+}
+
+.bookmark-title {
+
+}
 
 .bookmark-url {
   float: left;
   width: 100%;
   display: block;
   font-size: 0.9em;
-  color: #bbbbbb; }
+  color: #bbbbbb;
+}
 
 .error {
   padding: 1em;
   background-color: #BB4040;
   color: white;
-  text-align: center; }
+  text-align: center;
+}
 
 .info {
   padding: 1em;
   background-color: green;
   color: white;
-  text-align: center; }
+  text-align: center;
+}
 
 footer {
   color: #D6D6D6;
   font-size: 0.777777778em;
-  margin: 13.5em 0 3em 0; }
+  margin: 13.5em 0 3em 0;
+}
 
 .column {
   width: 100%;
-  padding: 0 5%; }
-  @media (min-width: 600px) {
-    .column {
-      float: left;
-      width: 50%;
-      padding: 0 4%; } }
+  padding: 0 5%;
 
-@media (min-width: 600px) {
-  .right-column {
-    text-align: right; } }
+  @media (min-width: 600px) {
+    float: left;
+    width: 50%;
+    padding: 0 4%;
+  }
+}
+
+.right-column {
+  @media (min-width: 600px) {
+    text-align: right;
+  }
+}
+
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+
 /*
  * Hide from both screenreaders and browsers: h5bp.com/u
  */
+
 .hidden {
-  display: none !important;
-  visibility: hidden; }
+    display: none !important;
+    visibility: hidden;
+}
 
 /*
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
+
 .visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px; }
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
 
 /*
  * Extends the .visuallyhidden class to allow the element to be focusable
  * when navigated to via the keyboard: h5bp.com/p
  */
+
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto; }
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
 
 /*
  * Hide visually and from screenreaders, but maintain layout
  */
+
 .invisible {
-  visibility: hidden; }
+    visibility: hidden;
+}
 
 /*
  * Clearfix: contain floats
@@ -238,12 +308,13 @@ footer {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
+
 .clearfix:before,
 .clearfix:after {
-  content: " ";
-  /* 1 */
-  display: table;
-  /* 2 */ }
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
 
 .clearfix:after {
-  clear: both; }
+    clear: both;
+}

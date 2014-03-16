@@ -7,7 +7,7 @@ require 'omniauth-pocket'
 # recursively require all model files
 Dir[Dir.pwd + "/models/**/*.rb"].each { |f| require f }
 
-POCKET_CONSUMER_KEY = YAML.load_file("config/pocket.yaml")["consumer_key"]
+POCKET_CONSUMER_KEY = ENV[POCKET_CONSUMER_KEY] || YAML.load_file("config/pocket.yaml")["consumer_key"]
 
 class PocketmarkerApp < Sinatra::Base
   configure do

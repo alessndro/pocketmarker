@@ -32,7 +32,7 @@ class PocketmarkerApp < Sinatra::Base
      end
   end
 
-  before '/upload_bookmarks' do
+  before '/upload' do
     @username = session[:username] if !session[:username].nil?
     
     unless current_user
@@ -73,10 +73,8 @@ class PocketmarkerApp < Sinatra::Base
     pocket_client = PocketAPIClient.new(POCKET_CONSUMER_KEY, session[:access_token])
     
     if pocket_client.add_items(@bookmark_list.bookmarks)
-      puts "Success"
       haml :add_to_pocket_success
     else
-      puts "Failure"
       haml :add_to_pocket_failure
     end
   end
@@ -86,7 +84,7 @@ class PocketmarkerApp < Sinatra::Base
     session[:username] = request.env["omniauth.auth"].info.name
     session[:access_token] = request.env["omniauth.auth"].credentials.token
     
-    flash[:info] = "Successfully logged in"
+    flash[:info] = "Hi #{session[:username]}, you successfully logged in"
     redirect to('/upload')
   end
 

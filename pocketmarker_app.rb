@@ -37,7 +37,7 @@ class PocketmarkerApp < Sinatra::Base
     
     unless current_user
       flash[:error] = "You need to log in Via Pocket to access this section"
-      #redirect to('/') 
+      redirect to('/') 
     end
   end
 

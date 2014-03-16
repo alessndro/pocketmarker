@@ -14,11 +14,11 @@
     /[if lt IE 8]
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     / Add your site or application content here
-    .container
-      .flash
-        = styled_flash
+    .container.clearfix
+      = styled_flash
       %header
-        %img{ src:"img/logo@2x.png", class: "logo"}
+        %a{ href: "/"}
+          %img{ src:"img/logo@2x.png", class: "logo"}
       .main
         = yield
       %footer

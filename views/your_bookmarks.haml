@@ -1,4 +1,8 @@
-%form{ action:"add_to_pocket", method: "post", id: "bookmark_edit_form" }
+%h2.one-column
+  Select the bookmarks you would like to add to Pocket
+%a.one-column{id: "checkbox-control", href: "#"}
+  Uncheck All
+%form.one-column{ action:"add_to_pocket", method: "post", id: "bookmark_edit_form" }
   - @bookmark_list.bookmarks.each_with_index do |bookmark, n|
     .bookmark-item.clearfix
       %label{ for: "bookmark-#{n}"}
@@ -8,5 +12,3 @@
       %span.bookmark-url
         = html_escape(bookmark.url)
   %input{ type: "submit", value: "Add to Pocket"}
-%a{id: "checkbox-control", href: "#"}
-  Uncheck All

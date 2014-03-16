@@ -83,6 +83,11 @@ a:hover {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+h1 {
+  text-align: center;
+  margin: 0 0 2.076923077em 0;
+  font-size: 1.444444444em; }
+
 header {
   text-align: center; }
 
@@ -98,6 +103,13 @@ header {
   @media (min-width: 500px) {
     .blocked-heading {
       padding: 1.125em 20%; } }
+
+.main {
+  min-height: 22.5em; }
+
+.one-column {
+  padding: 0 20%;
+  margin: 1.125em 0; }
 
 .button {
   display: block;
@@ -142,6 +154,27 @@ header {
   margin: 0 0 1.125em 0;
   color: #d9787b; }
 
+.upload-form {
+  margin: 3em 0; }
+
+input[type=file] {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center; }
+
+input[type=submit] {
+  border: none;
+  display: block;
+  width: 100%;
+  background-color: #d9787b;
+  color: white;
+  padding: 1.125em 0;
+  margin: 3em auto;
+  text-align: center; }
+  input[type=submit]:hover {
+    opacity: 0.8; }
+
 .bookmark-item {
   margin: 1em 0; }
 
@@ -155,17 +188,19 @@ label {
   font-size: 0.9em;
   color: #bbbbbb; }
 
-.error {
-  padding: 1em;
-  background-color: #BB4040;
+.flash {
+  font-size: 0.777777778em;
+  line-height: 1.928571429;
   color: white;
   text-align: center; }
 
+.error {
+  background-color: #d9787b;
+  padding: 1em; }
+
 .info {
-  padding: 1em;
-  background-color: green;
-  color: white;
-  text-align: center; }
+  background-color: #94cdb7;
+  padding: 1em; }
 
 footer {
   color: #D6D6D6;
@@ -184,6 +219,9 @@ footer {
 @media (min-width: 600px) {
   .right-column {
     text-align: right; } }
+
+.add-status {
+  text-align: center; }
 
 /* ==========================================================================
    Helper classes

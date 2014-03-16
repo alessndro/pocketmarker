@@ -23,6 +23,13 @@ class PocketmarkerApp < Sinatra::Base
     def current_user
       !session[:uid].nil?
     end
+
+     def check_file_params!
+        if params[:bookmark_file].nil?
+          flash[:error] = "You didn't select a file to upload"
+          redirect to('/upload') 
+        end
+     end
   end
 
   before '/upload_bookmarks' do
@@ -43,6 +50,8 @@ class PocketmarkerApp < Sinatra::Base
   end
 
   post '/upload' do
+    check_file_params!
+
     bookmark_file = File.read(params[:bookmark_file][:tempfile])
     @bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
 
@@ -77,7 +86,7 @@ class PocketmarkerApp < Sinatra::Base
     session[:username] = request.env["omniauth.auth"].info.name
     session[:access_token] = request.env["omniauth.auth"].credentials.token
     
-    flash[:info] = "You have successfully logged in"
+    flash[:info] = "Successfully logged in"
     redirect to('/upload')
   end
 

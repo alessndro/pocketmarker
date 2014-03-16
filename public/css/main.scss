@@ -110,6 +110,12 @@ a:hover {
    Author's custom styles
    ========================================================================== */
 
+h1 {
+  text-align: center;
+  margin: 0 0 2.076923077em 0;
+  font-size: 1.444444444em;
+}
+
 header {
   text-align: center;
 }
@@ -128,6 +134,15 @@ header {
   @media (min-width: 500px) {
     padding: 1.125em 20%;
   }
+}
+
+.main {
+  min-height: 22.5em;
+}
+
+.one-column {
+  padding: 0 20%;
+  margin: 1.125em 0;
 }
 
 .button {
@@ -184,20 +199,39 @@ header {
   margin: 0 0 1.125em 0;
   color: $dark-red;
 }
+
+.upload-form {
+  margin: 3em 0;
+}
+
+input[type=file] {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+input[type=submit] {
+  border: none;
+  display: block;
+  width: 100%;
+  background-color: $dark-red;
+  color: white;
+  padding: 1.125em 0;
+  margin: 3em auto;
+  text-align: center;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 .bookmark-item {
   margin: 1em 0;
 }
 
 label {
   display:block;
-}
-
-.bookmark-checkbox {
-
-}
-
-.bookmark-title {
-
 }
 
 .bookmark-url {
@@ -208,18 +242,21 @@ label {
   color: #bbbbbb;
 }
 
-.error {
-  padding: 1em;
-  background-color: #BB4040;
+.flash {
+  font-size: 0.777777778em;
+  line-height: 1.928571429;
   color: white;
   text-align: center;
 }
 
-.info {
+.error {
+  background-color: $dark-red;
   padding: 1em;
-  background-color: green;
-  color: white;
-  text-align: center;
+}
+
+.info {
+  background-color: $dark-green;
+  padding: 1em;
 }
 
 footer {
@@ -245,6 +282,9 @@ footer {
   }
 }
 
+.add-status {
+  text-align: center;
+}
 
 /* ==========================================================================
    Helper classes

@@ -1,5 +1,8 @@
-Upload Your Bookmarks
-
-%form.upload_form{ action: "/upload", method: "post", enctype: 'multipart/form-data' }
+%h1
+  Upload Your Bookmarks
+%p.one-column
+  Most web browsers allow you to export your bookmarks to a HTML file, which you can upload below:
+-# Annoyingly there is no way to style file inputs reliably
+%form.upload-form.one-column{ action: "/upload", method: "post", enctype: 'multipart/form-data' }
   %input{ type: "file", name: "bookmark_file", accept: ".html" }
   %input{ type: "submit", value: "Upload Bookmarks"}

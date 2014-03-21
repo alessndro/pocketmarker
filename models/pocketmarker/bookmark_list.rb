@@ -37,10 +37,8 @@ module Pocketmarker
 
       bookmarks = []
 
-      bookmark_doc.xpath("//A").each do |link_node|
-        # If the anchor doesn't have the ADD_DATE attribute, it isn't an
-        # actual bookmark, so skip it
-        next if !link_node.attributes.has_key?("ADD_DATE")
+      # 'A' nodes with the ADD_DATE attribute are bookmarks
+      bookmark_doc.xpath("//A[@ADD_DATE]").each do |link_node|
 
         bookmark_title = link_node.children.text || "No Name"
         bookmark_url = link_node.attributes["HREF"].value

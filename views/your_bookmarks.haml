@@ -6,9 +6,8 @@
   - @bookmark_list.bookmarks.each_with_index do |bookmark, n|
     .bookmark-item.clearfix
       %label{ for: "bookmark-#{n}"}
-        %input{ type: "checkbox", name: html_escape(bookmark.title), value: html_escape(bookmark.url), id: "bookmark-#{n}", checked: "checked", class: "bookmark-checkbox" }
-        %span.bookmark-title
-          = html_escape(bookmark.title)
-      %span.bookmark-url
-        = html_escape(bookmark.url)
+        %input{ type: "checkbox", name: "[bookmark-#{n}][add]", value: true, id: "bookmark-#{n}", checked: "checked", class: "bookmark-checkbox" }
+        %input.bookmark-title{ type: "text", name: "[bookmark-#{n}][title]", value: html_escape(bookmark.title), readonly: "true"}
+        %input.bookmark-url{ type: "text", name: "[bookmark-#{n}][url]", value: html_escape(bookmark.url), readonly: "true"}
+        %input{ type: "text", name: "[bookmark-#{n}][tags]", value: html_escape(bookmark.print_tags)}
   %input{ type: "submit", value: "Add to Pocket"}

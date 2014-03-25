@@ -1,11 +1,11 @@
 module Pocketmarker
   class Bookmark
-    attr_reader :title, :url
+    attr_reader :title, :url, :tags
 
-    def initialize(title, url)
+    def initialize(title, url,tags)
       @title = title
       @url = url
-      @tags = []
+      @tags = tags.is_a?(Array) ? tags : [] << tags
     end
 
     # Add one or more tags to this bookmark
@@ -13,8 +13,16 @@ module Pocketmarker
       @tags += tags
     end
 
-    def tags
-      @tags.join(", ")
+    def to_s
+      "Name: #{@title}\nURL: #{@url}\nTags: #{@tags.join(", ")}"
+    end
+
+    def print_tags
+      @tags.join(",")
+    end
+
+    def has_tags?
+      @tags.empty? ? false : true
     end
   end
 end

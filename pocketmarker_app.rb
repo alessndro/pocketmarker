@@ -27,17 +27,17 @@ class PocketmarkerApp < Sinatra::Base
      def check_file_params!
         if params[:bookmark_file].nil?
           flash[:error] = "You didn't select a file to upload"
-          redirect to('/upload') 
+          redirect to('/upload')
         end
      end
   end
 
   before '/upload' do
     @username = session[:username] if !session[:username].nil?
-    
+
     unless current_user
       flash[:error] = "You need to log in Via Pocket to access this section"
-      redirect to('/') 
+      #redirect to('/')
     end
   end
 
@@ -54,7 +54,7 @@ class PocketmarkerApp < Sinatra::Base
 
     bookmark_file = File.read(params[:bookmark_file][:tempfile])
     @bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
-
+    #require 'pry'; binding.pry
     if @bookmark_list.empty?
       flash[:error] = "The file was either corrupted or did not contain any bookmarks"
       redirect to('/upload')
@@ -66,12 +66,20 @@ class PocketmarkerApp < Sinatra::Base
   post "/add_to_pocket" do
     @bookmark_list = Pocketmarker::BookmarkList.new
 
-    params.each do |bookmark_title, bookmark_url|
-        @bookmark_list.add(Pocketmarker::Bookmark.new(bookmark_title, bookmark_url))
+    params.values.each do |bookmark|
+
+      # Parse tag array and remove blank/empty tags
+      parsed_tags = bookmark["tags"].split(",").reject {|tag| tag = tag.strip; tag == "" || tag.match(/\A\s+\z/)}
+      parsed_tags = bookmark["tags"].split(",").inject([]) do |result, tag|
+          tag = tag.strip
+          result << tag if tag != "" || !tag.match(/\A\s+\z/)
+      end
+
+      @bookmark_list.add(Pocketmarker::Bookmark.new(bookmark["title"], bookmark["url"], parsed_tags)) if bookmark.has_key?("add")
     end
 
     pocket_client = PocketAPIClient.new(POCKET_CONSUMER_KEY, session[:access_token])
-    
+
     if pocket_client.add_items(@bookmark_list.bookmarks)
       haml :add_to_pocket_success
     else
@@ -83,13 +91,13 @@ class PocketmarkerApp < Sinatra::Base
     session[:uid] = request.env["omniauth.auth"].uid
     session[:username] = request.env["omniauth.auth"].info.name
     session[:access_token] = request.env["omniauth.auth"].credentials.token
-    
+
     flash[:info] = "Hi #{session[:username]}, you successfully logged in"
     redirect to('/upload')
   end
 
   get '/auth/failure' do
     flash[:error] = "Something went wrong while authenticating"
-    redirect to('/') 
+    redirect to('/')
   end
 end

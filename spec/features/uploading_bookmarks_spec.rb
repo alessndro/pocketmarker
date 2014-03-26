@@ -26,7 +26,7 @@ describe "Uploading bookmarks", :type => :feature do
 
       it "accepts html files" do
         expect(page).to have_css("input[accept='.html']")
-      end 
+      end
     end
 
     context "when the bookmarks file is valid" do
@@ -39,18 +39,22 @@ describe "Uploading bookmarks", :type => :feature do
 
       describe "uploading a bookmark file"  do
         it "displays the titles of bookmarks that were in the uploaded file" do
-          expect(page).to have_content("ESPN: The Worldwide Leader In Sports")
-          expect(page).to have_content("News")
+          expect(page).to have_field("[bookmark-0][title]", with: "News")
+          expect(page).to have_field("[bookmark-0][url]", with: "http://news.com")
         end
 
-        it "displays the url of bookmarks that were in the uploaded file" do
-          expect(page).to have_content("http://news.com")
-          expect(page).to have_content("http://espn.go.com/")
+        it "displays the URL of bookmarks that were in the uploaded file" do
+          expect(page).to have_field("[bookmark-1][title]", with: "ESPN: The Worldwide Leader In Sports")
+          expect(page).to have_field("[bookmark-1][url]", with: "http://espn.go.com/")
         end
 
         it "displays a checkbox for each bookmark in the uploaded file" do
-          expect(page).to have_checked_field("ESPN: The Worldwide Leader In Sports")
-          expect(page).to have_checked_field("News")
+          expect(page).to have_checked_field("[bookmark-0][add]")
+          expect(page).to have_checked_field("[bookmark-1][add]")
+        end
+
+        it "displays any tags derived form the folder the bookmark was in" do
+          expect(page).to have_field("[bookmark-1][tags]", with: "Bookmarks Bar")
         end
       end
     end

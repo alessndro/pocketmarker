@@ -19,10 +19,4 @@ describe "Pocketmarker::Bookmark" do
     bookmark.add_tags(["one", "two", "three", "four"])
     expect(bookmark.print_tags).to eq("tag_one,tag_two,one,two,three,four")
   end
-
-  it "knows when it has non-empty tags" do
-    another_bookmark = Pocketmarker::Bookmark.new("A webpage", "http://awebpage.com", "")
-
-    expect(another_bookmark.has_tags?).to eq(false)
-  end
 end

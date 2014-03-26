@@ -41,7 +41,6 @@ class PocketAPIClient
                                "url" => bookmark.url
                       }
       bookmark_hash["tags"] = bookmark.print_tags if bookmark.has_tags?
-      puts bookmark_hash
       bookmark_json_array << bookmark_hash
     end
 

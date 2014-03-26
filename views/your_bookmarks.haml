@@ -1,13 +1,17 @@
 %h2.one-column
-  Select the bookmarks you would like to add to Pocket
+  Select the bookmarks you would like to add to Pocket.
+%p.one-column
+  Pocketmarker has automatically tagged each bookmark based on the folder it was in.
+%p.one-column
+  You can edit these tags below and add new ones if desired.
 %a.one-column{id: "checkbox-control", href: "#"}
   Uncheck All
-%form.one-column{ action:"add_to_pocket", method: "post", id: "bookmark_edit_form" }
+%form.one-column{ class: "bookmarks-form", action:"add_to_pocket", method: "post", id: "bookmark_edit_form" }
   - @bookmark_list.bookmarks.each_with_index do |bookmark, n|
     .bookmark-item.clearfix
       %label{ for: "bookmark-#{n}"}
         %input{ type: "checkbox", name: "[bookmark-#{n}][add]", value: true, id: "bookmark-#{n}", checked: "checked", class: "bookmark-checkbox" }
         %input.bookmark-title{ type: "text", name: "[bookmark-#{n}][title]", value: html_escape(bookmark.title), readonly: "true"}
         %input.bookmark-url{ type: "text", name: "[bookmark-#{n}][url]", value: html_escape(bookmark.url), readonly: "true"}
-        %input{ type: "text", name: "[bookmark-#{n}][tags]", value: html_escape(bookmark.print_tags)}
+        %input.editable{ type: "text", name: "[bookmark-#{n}][tags]", value: html_escape(bookmark.print_tags)}
   %input{ type: "submit", value: "Add to Pocket"}

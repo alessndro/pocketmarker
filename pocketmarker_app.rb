@@ -37,7 +37,7 @@ class PocketmarkerApp < Sinatra::Base
 
     unless current_user
       flash[:error] = "You need to log in Via Pocket to access this section"
-      #redirect to('/')
+      redirect to('/')
     end
   end
 
@@ -54,7 +54,7 @@ class PocketmarkerApp < Sinatra::Base
 
     bookmark_file = File.read(params[:bookmark_file][:tempfile])
     @bookmark_list = Pocketmarker::BookmarkList.create_from_file(bookmark_file)
-    #require 'pry'; binding.pry
+
     if @bookmark_list.empty?
       flash[:error] = "The file was either corrupted or did not contain any bookmarks"
       redirect to('/upload')

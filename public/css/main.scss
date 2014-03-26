@@ -9,8 +9,8 @@ $light-red: #F07175;
 $grey: #545454;
 
 *, *:before, *:after {
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
  }
 
@@ -161,7 +161,7 @@ header {
   &:link, &:visited {
     color: white;
   }
-  
+
   @media (min-width: 600px) {
     width: 50%;
   }
@@ -204,6 +204,10 @@ header {
   margin: 3em 0;
 }
 
+bookmarks-form {
+  margin: 2.888888889em 0 0 0;
+}
+
 input[type=file] {
   display: block;
   width: 100%;
@@ -220,9 +224,34 @@ input[type=submit] {
   padding: 1.125em 0;
   margin: 3em auto;
   text-align: center;
-  
+
   &:hover {
     opacity: 0.8;
+  }
+}
+
+input[type=checkbox] {
+  float:left;
+  width: 5%;
+  height: 1.5em;
+}
+
+input[type=text] {
+  border: none;
+  line-height: 1.5;
+  float:left;
+  width: 95%;
+}
+
+.editable {
+  color: #888888;
+  background-color: #efefef;
+  margin: 0 0 0.777777778em 0;
+  padding: 0 0 0 0.55555555em;
+
+  @media(min-width: 600px) {
+    float: left;
+    width: 60%;
   }
 }
 

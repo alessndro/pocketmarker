@@ -157,6 +157,9 @@ header {
 .upload-form {
   margin: 3em 0; }
 
+bookmarks-form {
+  margin: 2.888888889em 0 0 0; }
+
 input[type=file] {
   display: block;
   width: 100%;
@@ -174,6 +177,27 @@ input[type=submit] {
   text-align: center; }
   input[type=submit]:hover {
     opacity: 0.8; }
+
+input[type=checkbox] {
+  float: left;
+  width: 5%;
+  height: 1.5em; }
+
+input[type=text] {
+  border: none;
+  line-height: 1.5;
+  float: left;
+  width: 95%; }
+
+.editable {
+  color: #888888;
+  background-color: #efefef;
+  margin: 0 0 0.777777778em 0;
+  padding: 0 0 0 0.55555555em; }
+  @media (min-width: 600px) {
+    .editable {
+      float: left;
+      width: 60%; } }
 
 .bookmark-item {
   margin: 1em 0; }

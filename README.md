@@ -1,4 +1,7 @@
-![PocketMarker](public/img/logo.png)
+# Pocketmarker
+
+![](screenshots/homepage.jpg)
+![](screenshots/bookmarks.jpg)
 
 A Sinatra app that allows you to add items to [Pocket](http://getpocket) from an exported bookmarks file.
 

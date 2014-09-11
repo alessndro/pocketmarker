@@ -33,7 +33,7 @@ class PocketmarkerApp < Sinatra::Base
   end
 
   before '/upload' do
-    @username = session[:username] if !session[:username].nil?
+    @username = session[:username] unless session[:username].nil?
 
     unless current_user
       flash[:error] = "You need to log in Via Pocket to access this section"
